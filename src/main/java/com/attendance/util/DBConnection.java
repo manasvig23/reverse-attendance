@@ -12,4 +12,15 @@ public class DBConnection {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
+    public static void main(String[] args) {
+        try {
+            Connection con = getConnection();
+            if (con != null) {
+                System.out.println("Connection successful!");
+                con.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

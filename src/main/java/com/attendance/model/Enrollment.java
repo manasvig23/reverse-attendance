@@ -5,6 +5,8 @@ public class Enrollment {
     private int studentId;
     private int subjectId;
 
+    public Enrollment() {}
+
     public Enrollment(int enrollmentId, int studentId, int subjectId) {
         this.enrollmentId = enrollmentId;
         this.studentId    = studentId;
