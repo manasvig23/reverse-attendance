@@ -1,15 +1,22 @@
 package com.attendance;
-import java.sql.Connection;
-import com.attendance.util.*;
+import com.attendance.dao.StudentDAO;
+import com.attendance.model.Student;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            Connection conn = DBConnection.getConnection();
-            System.out.println("✅ Connected to DB successfully!");
-            conn.close();
-        } catch (Exception e) {
-            System.out.println("❌ Connection failed: " + e.getMessage());
+
+        StudentDAO studentDAO = new StudentDAO();
+
+        // Test login with seeded data (EN001 / 1234)
+        Student s = studentDAO.login("EN001", "1234");
+        if (s != null) {
+            System.out.println("✅ Login works! Welcome, " + s.getName());
+        } else {
+            System.out.println("❌ Login failed.");
         }
+
+        // Test register
+        Student newStudent = new Student(0, "John Doe", "EN002", "5678");
+        studentDAO.register(newStudent);
     }
 }
