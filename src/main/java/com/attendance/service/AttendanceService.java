@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AttendanceService {
 
-    private static final boolean TEST_MODE = true;
+    private static final boolean TEST_MODE = false;
 
     private final AttendanceDAO attendanceDAO = new AttendanceDAO();
     private final HolidayDAO    holidayDAO    = new HolidayDAO();
