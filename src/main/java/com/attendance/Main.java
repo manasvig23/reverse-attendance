@@ -130,11 +130,17 @@ public class Main {
             if (r.getLecturesHeld() == 0) {
                 System.out.println("  No lectures held yet.");
             } else if (r.isAchievable()) {
-                System.out.printf("  Still must attend : %d more lecture(s)%n", r.getStillRequired());
-                if (r.getCanAffordToSkip() > 0) {
-                    System.out.printf("  Can afford to skip: %d lecture(s)%n", r.getCanAffordToSkip());
+                if (r.getCurrentPercent() >= r.getTargetPercent()) {
+                    System.out.println("  You have already met the target! ✅");
+                    System.out.printf("  You can still afford to skip: %d lecture(s)%n", r.getCanAffordToSkip());
                 } else {
-                    System.out.println("  Cannot afford to skip any more lectures.");
+                    System.out.printf("  You must attend the next : %d lecture(s) to reach %.1f%%%n",
+                    r.getStillRequired(), r.getTargetPercent());
+                    if (r.getCanAffordToSkip() > 0) {
+                        System.out.printf("  After that, you can skip: %d lecture(s)%n", r.getCanAffordToSkip());
+                    } else {
+                        System.out.println("  You cannot afford to skip any lectures.");
+                    }
                 }
                 System.out.println("  Status  : ✅ TARGET ACHIEVABLE");
             } else {
